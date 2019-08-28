@@ -27,7 +27,6 @@ public class OrderController {
 
     /**
      * 查询订单
-     * 1.如果stock和score只有一个节点，则两者无需添加Load balancer，也就是Feign
      */
     @GetMapping("/order/{id}")
     public String getOrderById(@PathVariable("id") String id) {
