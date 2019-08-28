@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-import pers.hanchao.microservicedemo.serviceorder.api.ScoreApi;
-import pers.hanchao.microservicedemo.serviceorder.api.StockApi;
+import pers.hanchao.microservicedemo.serviceorder.api.GetScoreByIdApi;
+import pers.hanchao.microservicedemo.serviceorder.api.GetStockByIdApi;
 
 import javax.annotation.Resource;
 
@@ -17,10 +17,10 @@ import javax.annotation.Resource;
 @RestController
 public class OrderController {
     @Resource
-    private ScoreApi scoreApi;
+    private GetScoreByIdApi getScoreByIdApi;
 
     @Resource
-    private StockApi stockApi;
+    private GetStockByIdApi getStockByIdApi;
 
     @Value("${server.port}")
     private Integer port;
@@ -31,10 +31,10 @@ public class OrderController {
     @GetMapping("/order/{id}")
     public String getOrderById(@PathVariable("id") String id) {
         //获取库存信息
-        String stockInfo = stockApi.getStockById(id);
+        String stockInfo = getStockByIdApi.getStockById(id);
 
         //获取积分信息
-        String scoreInfo = scoreApi.getScoreById(id);
+        String scoreInfo = getScoreByIdApi.getScoreById(id);
 
         return String.format("订单信息{id=%s,port=%d,stock=%s,score=%s} ", id, port, stockInfo, scoreInfo);
     }

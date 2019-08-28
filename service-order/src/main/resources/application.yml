@@ -5,3 +5,7 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://127.0.0.1:9091/eureka/,http://127.0.0.1:9092/eureka/,http://127.0.0.1:9093/eureka/
+# feign集成的hystrix需要手动开启
+feign:
+  hystrix:
+    enabled: true
