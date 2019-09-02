@@ -22,13 +22,18 @@ spring:
         # uri-3:  lb://serviceId         --> 从eureka注册中心，根据serviceId获取服务地址，并做负载均衡，使用Netty的HttpClient转发请求
         # uri-4:  lb:ws://serviceId      --> 从eureka注册中心，根据serviceId获取服务地址，并做负载均衡，使用Spring Web Socket的基础架构去转发请求
         uri: lb://service-order
-        ## 请求转发前的filter过滤器
-#        filters:
-        # 不配置StripPrefix http://localhost:8081/order/2 转发至 http://service-order/order/2
-        # 配置StripPrefix=1 http://localhost:8081/order/2 转发至 http://service-order/2
-#        - StripPrefix=1
-        ## 这个路由的执行order
 #        order: 0
+      ## 路由组ID,唯一
+      - id: service-order-2
+        predicates:
+        - Path=/my-order/**
+        uri: lb://service-order
+        ## 请求转发前的filter过滤器
+        filters:
+        # 不配置StripPrefix http://localhost:8081/my-order/order/2 转发至 http://service-order/my-order/order/2
+        # 配置StripPrefix=1 http://localhost:8081/my-order/order/2 转发至 http://service-order/order/2
+        - StripPrefix=1
+        ## 这个路由的执行order
       - id: service-stock
         predicates:
         - Path=/stock/**
