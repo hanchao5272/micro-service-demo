@@ -33,7 +33,14 @@ spring:
         # 不配置StripPrefix http://localhost:8081/my-order/order/2 转发至 http://service-order/my-order/order/2
         # 配置StripPrefix=1 http://localhost:8081/my-order/order/2 转发至 http://service-order/order/2
         - StripPrefix=1
-        ## 这个路由的执行order
+        - name: RequestRateLimiter
+          args:
+            # 用于限流的键的解析器的 Bean 对象的名字。它使用 SpEL 表达式根据#{@beanName}从 Spring 容器中获取 Bean 对象。
+            key-resolver: '#{@hostAddressKeyResolver}'
+            # 令牌桶每秒填充平均速率。
+            redis-rate-limiter.replenishRate: 1
+            # 令牌桶总容量
+            redis-rate-limiter.burstCapacity: 2
       - id: service-stock
         predicates:
         - Path=/stock/**
@@ -42,6 +49,10 @@ spring:
         predicates:
         - Path=/score/**
         uri: lb://service-score
+  redis:
+    database: 1
+    host: 10.126.42.16
+    port: 26379
 
 eureka:
   client:
