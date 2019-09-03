@@ -3,10 +3,19 @@ spring:
     name: service-order
   zipkin:
     baseUrl: http://localhost:9411/
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://127.0.0.1:9091/eureka/,http://127.0.0.1:9092/eureka/,http://127.0.0.1:9093/eureka/
+  cloud:
+    config:
+      # 获取配置的serviceId
+      name: service-order
+      # git分支
+      label: master
+      # 环境profile
+      profile: dev
+#      discovery:
+#        enabled: true
+#        service-id: config-server
+      uri: http://localhost:7071/
+
 # feign集成的hystrix需要手动开启
 feign:
   hystrix:

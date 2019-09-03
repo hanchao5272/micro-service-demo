@@ -1,6 +1,7 @@
 package pers.hanchao.microservicedemo.serviceorder.controller;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +15,7 @@ import javax.annotation.Resource;
  *
  * @author hanchao
  */
+@RefreshScope
 @RestController
 public class OrderController {
     @Resource
@@ -25,6 +27,9 @@ public class OrderController {
     @Value("${server.port}")
     private Integer port;
 
+    @Value("${service-order.downgrade-switch.service-score}")
+    private Boolean serviceScoreSwitch;
+
     /**
      * 查询订单
      */
@@ -34,7 +39,12 @@ public class OrderController {
         String stockInfo = getStockByIdApi.getStockById(id);
 
         //获取积分信息
-        String scoreInfo = getScoreByIdApi.getScoreById(id);
+        String scoreInfo;
+        if (!serviceScoreSwitch){
+            scoreInfo = getScoreByIdApi.getScoreById(id);
+        }else {
+            scoreInfo = String.format("积分信息[id=%s,port=降级] ",id);
+        }
 
         return String.format("订单信息{id=%s,port=%d,stock=%s,score=%s} ", id, port, stockInfo, scoreInfo);
     }

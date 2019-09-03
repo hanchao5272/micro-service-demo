@@ -1,0 +1,26 @@
+spring:
+  cloud:
+    config:
+      # 获取配置的serviceId
+      name: service-order
+      # git分支
+      label: master
+      # 环境profile
+      profile: dev
+      discovery:
+        enabled: true
+        service-id: config-server
+      # 默认的config server地址为http://localhost:8888，如需修改需要在bootstrap.yml中设置。在application.yml中设置无效。
+#      uri: http://localhost:7071
+
+# 在application.yml报错： Could not locate configserver via discovery
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:9091/eureka/,http://127.0.0.1:9092/eureka/,http://127.0.0.1:9093/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        # 对外暴露 actuator的接口，如：/actuator/refresh,/actuator/info,/actuator/health等，*表示全部
+        include: "*"

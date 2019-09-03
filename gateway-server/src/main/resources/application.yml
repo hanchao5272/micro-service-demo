@@ -51,6 +51,13 @@ spring:
         predicates:
         - Path=/score/**
         uri: lb://service-score
+      - id: config-server
+        predicates:
+        - Path=/config/**
+        uri: lb://config-server
+        filters:
+        - StripPrefix=1
+
   redis:
     database: 1
     host: 10.126.42.16

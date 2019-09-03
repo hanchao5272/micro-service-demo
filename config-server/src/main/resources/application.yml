@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          # 配置文件所在的git项目根路径
+          uri: https://github.com/hanchao5272/micro-service-demo
+          # 配置文件所在的相对路径
+          search-paths: config-repo
+      # 配置文件所在环境
+      label: master
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:9091/eureka/,http://127.0.0.1:9092/eureka/,http://127.0.0.1:9093/eureka/
