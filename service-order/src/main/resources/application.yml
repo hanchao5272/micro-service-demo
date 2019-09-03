@@ -3,18 +3,6 @@ spring:
     name: service-order
   zipkin:
     baseUrl: http://localhost:9411/
-  cloud:
-    config:
-      # 获取配置的serviceId
-      name: service-order
-      # git分支
-      label: master
-      # 环境profile
-      profile: dev
-#      discovery:
-#        enabled: true
-#        service-id: config-server
-      uri: http://localhost:7071/
 
 # feign集成的hystrix需要手动开启
 feign:
