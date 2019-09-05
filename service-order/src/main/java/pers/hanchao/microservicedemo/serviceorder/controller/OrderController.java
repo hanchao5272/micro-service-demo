@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import pers.hanchao.microservicedemo.serviceorder.api.GetScoreByIdApi;
 import pers.hanchao.microservicedemo.serviceorder.api.GetStockByIdApi;
+import pers.hanchao.microservicedemo.serviceorder.command.SimpleCommand;
+import pers.hanchao.microservicedemo.serviceorder.service.OrderService;
 
 import javax.annotation.Resource;
 
@@ -18,6 +20,10 @@ import javax.annotation.Resource;
 @RefreshScope
 @RestController
 public class OrderController {
+
+    @Resource
+    private OrderService orderService;
+
     @Resource
     private GetScoreByIdApi getScoreByIdApi;
 
@@ -40,12 +46,15 @@ public class OrderController {
 
         //获取积分信息
         String scoreInfo;
-        if (!serviceScoreSwitch){
+        if (!serviceScoreSwitch) {
             scoreInfo = getScoreByIdApi.getScoreById(id);
-        }else {
-            scoreInfo = String.format("积分信息[id=%s,port=降级] ",id);
+        } else {
+            scoreInfo = String.format("积分信息[id=%s,port=降级] ", id);
         }
 
-        return String.format("订单信息{id=%s,port=%d,stock=%s,score=%s} ", id, port, stockInfo, scoreInfo);
+        //获取其他服务
+        String otherInfo = new SimpleCommand(orderService, id).execute();
+
+        return String.format("订单信息{id=%s,port=%d,stock=%s,score=%s,other=%s} ", id, port, stockInfo, scoreInfo, otherInfo);
     }
 }
