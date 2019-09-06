@@ -1,4 +1,4 @@
-package pers.hanchao.microservicedemo.serviceorder.command;
+package pers.hanchao.microservicedemo.serviceorder.command.util;
 
 /**
  * <p>熔断命令工具类</P>

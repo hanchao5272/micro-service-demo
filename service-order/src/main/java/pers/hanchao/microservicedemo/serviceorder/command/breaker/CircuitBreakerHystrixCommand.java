@@ -1,8 +1,9 @@
-package pers.hanchao.microservicedemo.serviceorder.command;
+package pers.hanchao.microservicedemo.serviceorder.command.breaker;
 
 import com.netflix.hystrix.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.math.RandomUtils;
+import pers.hanchao.microservicedemo.serviceorder.command.util.MyHystrixCommandUtil;
 
 /**
  * <p>CircuitBreaker:断路器</P>

@@ -1,6 +1,7 @@
-package pers.hanchao.microservicedemo.serviceorder.command;
+package pers.hanchao.microservicedemo.serviceorder.command.semaphore;
 
 import com.netflix.hystrix.*;
+import pers.hanchao.microservicedemo.serviceorder.command.util.MyHystrixCommandUtil;
 import pers.hanchao.microservicedemo.serviceorder.service.OrderService;
 
 /**

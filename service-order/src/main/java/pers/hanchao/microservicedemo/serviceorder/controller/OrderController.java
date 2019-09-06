@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import pers.hanchao.microservicedemo.serviceorder.api.GetScoreByIdApi;
 import pers.hanchao.microservicedemo.serviceorder.api.GetStockByIdApi;
-import pers.hanchao.microservicedemo.serviceorder.command.SemaphoreCommand;
-import pers.hanchao.microservicedemo.serviceorder.command.SimpleCommand;
+import pers.hanchao.microservicedemo.serviceorder.command.semaphore.SemaphoreCommand;
+import pers.hanchao.microservicedemo.serviceorder.command.simple.SimpleCommand;
 import pers.hanchao.microservicedemo.serviceorder.service.OrderService;
 
 import javax.annotation.Resource;
