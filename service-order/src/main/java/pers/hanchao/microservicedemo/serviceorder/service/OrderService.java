@@ -7,5 +7,7 @@ package pers.hanchao.microservicedemo.serviceorder.service;
  */
 public interface OrderService {
 
-    String getOtherInfo(String threadPoolKey, String id);
+    String getOtherInfoByNetWork(String threadPoolKey, String id);
+
+    String getOtherInfoByLocalCache(String id);
 }

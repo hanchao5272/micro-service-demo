@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import pers.hanchao.microservicedemo.serviceorder.api.GetScoreByIdApi;
 import pers.hanchao.microservicedemo.serviceorder.api.GetStockByIdApi;
+import pers.hanchao.microservicedemo.serviceorder.command.SemaphoreCommand;
 import pers.hanchao.microservicedemo.serviceorder.command.SimpleCommand;
 import pers.hanchao.microservicedemo.serviceorder.service.OrderService;
 
@@ -55,6 +56,9 @@ public class OrderController {
         //获取其他服务
         String otherInfo = new SimpleCommand(orderService, id).execute();
 
-        return String.format("订单信息{id=%s,port=%d,stock=%s,score=%s,other=%s} ", id, port, stockInfo, scoreInfo, otherInfo);
+        //获取本地缓存
+        String localCache = new SemaphoreCommand(orderService,id).execute();
+
+        return String.format("订单信息{\nid=%s,\nport=%d,\nstock=%s,\nscore=%s,\nother=%s,\nlocal-cache=%s\n} ", id, port, stockInfo, scoreInfo, otherInfo,localCache);
     }
 }

@@ -18,7 +18,7 @@ public class SimpleCommand extends HystrixCommand<String> {
     public SimpleCommand(OrderService orderService, String id) {
         super(Setter
                 //groupKey 命令分组名，可以是一个项目一个groupKey，也可以是一类业务一个groupKey，一个开发组也可以是一个groupKey
-                .withGroupKey(HystrixCommandGroupKey.Factory.asKey("learnToUseHystrixCommand"))
+                .withGroupKey(HystrixCommandGroupKey.Factory.asKey(MyHystrixCommandUtil.GROUP_KEY_LEARN_HYSTRIX_COMMAND))
                 //commandKey 命令名，一般从类名派生而来
                 .andCommandKey(HystrixCommandKey.Factory.asKey("simpleCommand"))
                 //hystrixCommand的配置
@@ -49,6 +49,6 @@ public class SimpleCommand extends HystrixCommand<String> {
      */
     @Override
     protected String run() {
-        return orderService.getOtherInfo("simpleCommand",id);
+        return orderService.getOtherInfoByNetWork("simpleCommand",id);
     }
 }
