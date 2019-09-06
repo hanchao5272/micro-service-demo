@@ -10,9 +10,9 @@ import pers.hanchao.microservicedemo.serviceorder.command.util.MyHystrixCommandU
  *
  * @author hanchao
  */
-public class FailOverDowngradHystrxCommand<T> extends AbstractDowngradeHystrixCommand<T> {
+public class FailOverDowngradeHystrxCommand<T> extends AbstractDowngradeHystrixCommand<T> {
 
-    public FailOverDowngradHystrxCommand() {
+    public FailOverDowngradeHystrxCommand() {
         super();
     }
 
@@ -53,6 +53,6 @@ public class FailOverDowngradHystrxCommand<T> extends AbstractDowngradeHystrixCo
     }
 
     public static void main(String[] args) {
-        new FailOverDowngradHystrxCommand<String >().execute();
+        new FailOverDowngradeHystrxCommand<String >().execute();
     }
 }
