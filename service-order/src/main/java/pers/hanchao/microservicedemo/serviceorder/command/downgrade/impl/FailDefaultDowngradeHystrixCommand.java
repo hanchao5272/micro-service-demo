@@ -10,8 +10,8 @@ import java.util.List;
  *
  * @author hanchao
  */
-public class DefaultValueDowngradeHystrixCommand<T> extends AbstractDowngradeHystrixCommand<T> {
-    public DefaultValueDowngradeHystrixCommand() {
+public class FailDefaultDowngradeHystrixCommand<T> extends AbstractDowngradeHystrixCommand<T> {
+    public FailDefaultDowngradeHystrixCommand() {
         super();
     }
 
@@ -26,6 +26,6 @@ public class DefaultValueDowngradeHystrixCommand<T> extends AbstractDowngradeHys
     }
 
     public static void main(String[] args) {
-        new DefaultValueDowngradeHystrixCommand<List<Integer>>().execute();
+        new FailDefaultDowngradeHystrixCommand<List<Integer>>().execute();
     }
 }
