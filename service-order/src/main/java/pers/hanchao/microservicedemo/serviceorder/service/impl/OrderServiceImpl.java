@@ -13,6 +13,6 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public String getOtherInfo(String threadPoolKey, String id) {
-        return String.format("其他信息[id=%s,threadPoolKey=%s] ", id, threadPoolKey);
+        return String.format("其他信息(通过网络请求获取)[id=%s,threadPoolKey=%s] ", id, threadPoolKey);
     }
 }

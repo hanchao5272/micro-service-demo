@@ -6,6 +6,8 @@ import pers.hanchao.microservicedemo.serviceorder.service.OrderService;
 /**
  * <p>简单HystrixCommand：用于初步熟悉HystrixCommand的参数与使用流程</P>
  *
+ * 默认情况下，HystrixCommand使用线程池隔离，这种隔离适用于【依赖网络请求的服务】，因为网络请求有很多不可预知之处，这么做可以容错。
+ *
  * @author hanchao
  */
 public class SimpleCommand extends HystrixCommand<String> {
