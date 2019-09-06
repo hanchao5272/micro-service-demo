@@ -4,7 +4,7 @@ import com.netflix.hystrix.*;
 import pers.hanchao.microservicedemo.serviceorder.service.OrderService;
 
 /**
- * <p></P>
+ * <p>简单HystrixCommand：用于初步熟悉HystrixCommand的参数与使用流程</P>
  *
  * @author hanchao
  */
