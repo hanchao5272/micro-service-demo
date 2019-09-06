@@ -7,7 +7,7 @@ import com.netflix.hystrix.HystrixCommand;
  *
  * @author hanchao
  */
-public abstract class AbstractDowngradeHystrixCommand extends HystrixCommand<String> {
+public abstract class AbstractDowngradeHystrixCommand<T> extends HystrixCommand<T> {
 
     private int id;
 
@@ -20,7 +20,7 @@ public abstract class AbstractDowngradeHystrixCommand extends HystrixCommand<Str
      * 正常业务逻辑
      */
     @Override
-    protected String run() throws Exception{
-        return String.format("回退降级[%d]", id);
+    protected T run() throws Exception{
+        return (T) String.format("回退降级[%d]", id);
     }
 }

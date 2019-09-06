@@ -10,19 +10,19 @@ import pers.hanchao.microservicedemo.serviceorder.command.util.MyHystrixCommandU
  * @author hanchao
  */
 @Slf4j
-public class FailFastDowngradeHystrixCommand extends AbstractDowngradeHystrixCommand {
+public class FailFastDowngradeHystrixCommand<T> extends AbstractDowngradeHystrixCommand<T> {
     public FailFastDowngradeHystrixCommand(int id) {
         super(MyHystrixCommandUtil.ALWAYS_OPENED_SETTER_FOR_TEST, id);
     }
 
     @Override
-    protected String getFallback() {
+    protected T getFallback() {
         try {
             throw new Exception("快速失败：直接抛出异常");
         } catch (Exception e) {
             log.error("快速失败：直接抛出异常");
         }
-        return "快速失败：直接抛出异常";
+        return (T) "快速失败：直接抛出异常";
     }
 
     public static void main(String[] args) {
