@@ -18,7 +18,9 @@ public class FailSilentDowngradeHystrixCommand<T> extends AbstractDowngradeHystr
     /**
      * fail-silent：无声失败，返回空、空对象等
      *
-     * 这种策略不推荐
+     * fail-silent也可称之为fail-safe,即：失败安全.
+     *
+     * 这种策略适用于：不太重要的业务，例如写日志等。
      */
     @Override
     protected T getFallback() {
